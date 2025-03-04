@@ -3,15 +3,27 @@ package com.firtsproject.firtsproject.entities;
 import java.io.Serializable;
 import java.util.Objects;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+
+@Entity
 public class Product implements Serializable {
 	
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
-	private long id;
-	private String mome;
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	private String name;
 	private Double price;
+	
+	@ManyToOne
+	@JoinColumn(name = "category_id")
 	
 	private Category category;
 	
@@ -19,28 +31,28 @@ public class Product implements Serializable {
 		
 	}
 
-	public Product(long id, String mome, Double price, Category category) {
+	public Product(Long id, String name, Double price, Category category) {
 		super();
 		this.id = id;
-		this.mome = mome;
+		this.name = name;
 		this.price = price;
 		this.category = category;
 	}
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
-	public String getMome() {
-		return mome;
+	public String getname() {
+		return name;
 	}
 
-	public void setMome(String mome) {
-		this.mome = mome;
+	public void setname(String name) {
+		this.name = name;
 	}
 
 	public Double getPrice() {
